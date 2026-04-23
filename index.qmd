@@ -46,6 +46,15 @@ Participants are required to bring your own laptop.
 
 We will be mainly working on the [Scilifelab Serve](https://serve.scilifelab.se/) system. All participants will be granted access to a personal workspace to be used during the course. 
 
+
+## Application
+
+The [application form](https://docs.google.com/forms/d/e/1FAIpQLSfuCK9vRDuvmvl3REqMdPiFf1RtLLBIQRa87uYJEbgB8XGPBw/viewform) will be open from 24 April to 22 May.
+
+Once the application is closed we will not accept additional students. However we will make all material for the course freely available so that you can study the material on your owm if you missed the deadline.
+
+
+
 ## The trainers
 
 The course will feature the following lecturers and trainers:
@@ -81,11 +90,6 @@ Course organizers:
 
 Contact: edu.spatial [at] nbis.se
 
-## Application
-
-The [application form](Add link) will be open from 24 April to 22 May. 
-
-Once the application is closed we will not accept additional students. However we will make all material for the course freely available so that you can study the material on your owm if you missed the deadline. 
 
 ## Additional information
 
