@@ -39,14 +39,14 @@
     "href": "practicals.html",
     "title": "Practicals",
     "section": "",
-    "text": "This course consists of multiple practicals. During the four days we will go through practical 0 till 9 (more info in the schedule). Each practical has a dedicated directory in the repository, and comes with:\n\nA container image: you will receive a link for each practical to your personal environment during the course.\nOne or more notebooks with the name p[practical number]_topic.ipynb or Practical[practical number]_topic.ipynb. So for practical 1, we have a notebook calledPractical1_Segmentation_Cellpose.ipynb`.\nOne or more conda environments in the image corresponding to each notebook, e.g. p1_segmentation.ipynb."
+    "text": "This course consists of multiple practicals. During the four days we will go through practical 0 till 9 (more info in the schedule). Each practical has a dedicated directory in the repository, and comes with:\n\nA container image: you will receive a link for each practical to your personal environment during the course.\nOne or more notebooks with the name p[practical number]_topic.ipynb or Practical[practical number]_topic.ipynb. So for practical 1, we have a notebook called Practical1_Segmentation_Cellpose.ipynb.\nOne or more conda environments in the image corresponding to each notebook, e.g. p1_segmentation.ipynb."
   },
   {
     "objectID": "practicals.html#introduction",
     "href": "practicals.html#introduction",
     "title": "Practicals",
     "section": "",
-    "text": "This course consists of multiple practicals. During the four days we will go through practical 0 till 9 (more info in the schedule). Each practical has a dedicated directory in the repository, and comes with:\n\nA container image: you will receive a link for each practical to your personal environment during the course.\nOne or more notebooks with the name p[practical number]_topic.ipynb or Practical[practical number]_topic.ipynb. So for practical 1, we have a notebook calledPractical1_Segmentation_Cellpose.ipynb`.\nOne or more conda environments in the image corresponding to each notebook, e.g. p1_segmentation.ipynb."
+    "text": "This course consists of multiple practicals. During the four days we will go through practical 0 till 9 (more info in the schedule). Each practical has a dedicated directory in the repository, and comes with:\n\nA container image: you will receive a link for each practical to your personal environment during the course.\nOne or more notebooks with the name p[practical number]_topic.ipynb or Practical[practical number]_topic.ipynb. So for practical 1, we have a notebook called Practical1_Segmentation_Cellpose.ipynb.\nOne or more conda environments in the image corresponding to each notebook, e.g. p1_segmentation.ipynb."
   },
   {
     "objectID": "practicals.html#working-on-the-practicals",
