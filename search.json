@@ -4,7 +4,7 @@
     "href": "schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "Please note: This is a preliminary schedule and will be updated prior to the course. Lecture slides will be made available in conjunction before or during the course."
+    "text": "Please note: This is a preliminary schedule and will be updated prior to the course. Lecture slides will be made available before or during the course."
   },
   {
     "objectID": "schedule.html#day-1-october-6-2026",
@@ -98,6 +98,20 @@
     "text": "Prerequisites\n\nKnowledge / competencies\nParticipants should be proficient in Python and R, for basic data analysis.\nParticipants should be familiar with NGS technologies, have experience with analyzing (spatial/single-cell) transcriptomics data as well as basic knowledge of machine learning.\nParticipants should also have a basic understanding of working with command line tools on Unix-based systems. You can test your skills with Unix with the quiz here. If you do not feel comfortable with UNIX commands, please take our Unix fundamentals e-learning module.\n\n\nTechnical\nParticipants are required to bring your own laptop.\nWe will be mainly working on the Scilifelab Serve system. All participants will be granted access to a personal workspace to be used during the course."
   },
   {
+    "objectID": "index.html#application",
+    "href": "index.html#application",
+    "title": "Spatial Omics Data Analysis",
+    "section": "Application",
+    "text": "Application\nThe application form will be open from 24 April to 22 May.\nOnce the application is closed we will not accept additional students. However we will make all material for the course freely available so that you can study the material on your owm if you missed the deadline."
+  },
+  {
+    "objectID": "index.html#course-fee",
+    "href": "index.html#course-fee",
+    "title": "Spatial Omics Data Analysis",
+    "section": "Course fee",
+    "text": "Course fee\nThe course fee is 150€. Lunch, coffee breaks and one social dinner are included. Applicants must supply a valid invoicing address in the application form. Please note that NBIS cannot invoice individuals."
+  },
+  {
     "objectID": "index.html#the-trainers",
     "href": "index.html#the-trainers",
     "title": "Spatial Omics Data Analysis",
@@ -110,13 +124,6 @@
     "title": "Spatial Omics Data Analysis",
     "section": "Course organizers",
     "text": "Course organizers\nThis is an international course hosted by NBIS (National Bioinformatics Infrastructure Sweden, ELIXIR-SE) in collaboration with the ELIXIR Single-Cell Omics community, and trainers’ own institutions and affiliations to ELIXIR nodes (KU Leuven, Helmholtz Zentrum München, SIB, BIH, LUMC, CAS).\nCourse organizers:\n\nAhmed Mahfouz, Leiden University Medical Center (LUMC), ELIXIR - Netherlands\nÅsa Björklund, Chalmers University of Technology, NBIS, Scilifelab, ELIXIR - Sweden\nChristophe Avenel, Uppsala University, NBIS, Scilifelab, ELIXIR - Sweden\nJennifer Fransson, Uppsala University, NBIS, Scilifelab, ELIXIR - Sweden\nEija Korpelainen, CSC, ELIXIR - Finland\n\nContact: edu.spatial [at] nbis.se"
-  },
-  {
-    "objectID": "index.html#application",
-    "href": "index.html#application",
-    "title": "Spatial Omics Data Analysis",
-    "section": "Application",
-    "text": "Application\nThe application form will be open from 24 April to 22 May.\nOnce the application is closed we will not accept additional students. However we will make all material for the course freely available so that you can study the material on your owm if you missed the deadline."
   },
   {
     "objectID": "index.html#additional-information",
