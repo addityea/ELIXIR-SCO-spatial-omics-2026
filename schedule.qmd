@@ -2,7 +2,7 @@
 title: "Schedule"
 ---
 
-*Please note: This is a preliminary schedule and will be updated prior to the course. Lecture slides will be made available in conjunction before or during the course.*
+*Please note: This is a preliminary schedule and will be updated prior to the course. Lecture slides will be made available before or during the course.*
 
 ## Day 1 (October 6, 2026)
 
