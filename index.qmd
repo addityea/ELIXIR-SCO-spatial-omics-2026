@@ -49,7 +49,7 @@ We will be mainly working on the [Scilifelab Serve](https://serve.scilifelab.se/
 
 ## Application
 
-The [application form](https://docs.google.com/forms/d/e/1FAIpQLSfuCK9vRDuvmvl3REqMdPiFf1RtLLBIQRa87uYJEbgB8XGPBw/viewform) will be open from 24 April to 22 May.
+The [application form](https://docs.google.com/forms/d/e/1FAIpQLSfuCK9vRDuvmvl3REqMdPiFf1RtLLBIQRa87uYJEbgB8XGPBw/viewform) will be open from 24 April to 29 May.
 
 Once the application is closed we will not accept additional students. However we will make all material for the course freely available so that you can study the material on your owm if you missed the deadline.
 
