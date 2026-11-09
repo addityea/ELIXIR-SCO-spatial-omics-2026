@@ -94,6 +94,8 @@ ENV PATH="/app/.pixi/envs/default/bin:${PATH}"
 # quarto CLI: the vignettes are .qmd documents, but the RStudio daily builds do not bundle quarto.
 # ADD downloads and extracts the archive natively in BuildKit; extracting with tar inside RUN
 # breaks under QEMU emulation ("Cannot open: Function not implemented").
+# TARGETARCH must be declared before use (BuildKit predefined ARG).
+ARG TARGETARCH
 ADD "https://github.com/quarto-dev/quarto-cli/releases/download/v1.7.31/quarto-1.7.31-linux-${TARGETARCH}.tar.gz" /opt/
 RUN ln -s /opt/quarto-1.7.31-linux-${TARGETARCH}/bin/quarto /usr/local/bin/quarto
 
