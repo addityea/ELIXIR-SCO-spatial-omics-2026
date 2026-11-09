@@ -37,6 +37,14 @@ RUN chown -R ${NB_UID}:${NB_GID} /app
 RUN pixi shell-hook -s bash > /shell-hook.sh && \
     echo 'exec "$@"' >> /shell-hook.sh
 
+# quarto CLI, prepared in a native-platform stage: ADD from URL does not auto-extract, and
+# emulated amd64 tar fails under QEMU ("Cannot open: Function not implemented"). busybox
+# running on the native build platform extracts fine; the payload is just files.
+FROM --platform=$BUILDPLATFORM busybox:1.36 AS quarto
+ARG TARGETARCH
+ADD "https://github.com/quarto-dev/quarto-cli/releases/download/v1.7.31/quarto-1.7.31-linux-${TARGETARCH}.tar.gz" /tmp/quarto.tar.gz
+RUN tar xzf /tmp/quarto.tar.gz -C /opt --strip-components=1
+
 FROM ubuntu:latest AS production
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Serve's RStudio app mounts project volumes under /home/jovyan/<volume>
@@ -92,12 +100,10 @@ ENV LD_PRELOAD=/opt/libnosigtrap.so
 ENV PATH="/app/.pixi/envs/default/bin:${PATH}"
 
 # quarto CLI: the vignettes are .qmd documents, but the RStudio daily builds do not bundle quarto.
-# ADD downloads and extracts the archive natively in BuildKit; extracting with tar inside RUN
-# breaks under QEMU emulation ("Cannot open: Function not implemented").
-# TARGETARCH must be declared before use (BuildKit predefined ARG).
-ARG TARGETARCH
-ADD "https://github.com/quarto-dev/quarto-cli/releases/download/v1.7.31/quarto-1.7.31-linux-${TARGETARCH}.tar.gz" /opt/
-RUN ln -s /opt/quarto-1.7.31-linux-${TARGETARCH}/bin/quarto /usr/local/bin/quarto
+# Prepared in the native-platform 'quarto' stage above (ADD from URL does not auto-extract, and
+# emulated tar fails under QEMU).
+COPY --from=quarto /opt/quarto /opt/quarto
+RUN ln -s /opt/quarto/bin/quarto /usr/local/bin/quarto
 
 RUN ARCH="$(dpkg --print-architecture)" && \
     echo "Detected architecture: $ARCH" && \
