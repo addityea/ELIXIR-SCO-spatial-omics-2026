@@ -8,13 +8,18 @@ WORKDIR /app
 # The whole update+install is retried together, since Ubuntu mirrors can serve an index that's
 # briefly ahead of their package pool (update succeeds, then install 404s on a .deb)
 RUN n=0; \
-    until apt-get update && apt-get install -y git curl; do \
+    until apt-get update && apt-get install -y git curl gcc libc6-dev; do \
         n=$((n + 1)); \
         if [ "$n" -ge 5 ]; then exit 1; fi; \
         echo "apt-get attempt $n failed, retrying in 10s..."; \
         sleep 10; \
     done && \
     rm -rf /var/lib/apt/lists/*
+
+# Rosetta 2 workaround for amd64 images on Apple Silicon (see docker/nosigtrap.c):
+# keeps threads from masking SIGTRAP, which otherwise deadlocks fork() in Rosetta.
+COPY docker/nosigtrap.c /app/nosigtrap.c
+RUN gcc -shared -fPIC -O2 -o /libnosigtrap.so /app/nosigtrap.c
 
 COPY ${PIXI_ENV_PATH}/pixi.toml /app/
 COPY ${PIXI_ENV_PATH}/pixi.lock /app/
@@ -82,7 +87,15 @@ RUN userdel -r ubuntu 2>/dev/null || true && \
 # Copy pixi-installed environment + activation hook
 COPY --from=build /app /app
 COPY --from=build /shell-hook.sh /shell-hook.sh
+COPY --from=build /libnosigtrap.so /opt/libnosigtrap.so
+ENV LD_PRELOAD=/opt/libnosigtrap.so
 ENV PATH="/app/.pixi/envs/default/bin:${PATH}"
+
+# quarto CLI: the vignettes are .qmd documents, but the RStudio daily builds do not bundle quarto.
+RUN ARCH="$(dpkg --print-architecture)" && \
+    wget -q "https://github.com/quarto-dev/quarto-cli/releases/download/v1.7.31/quarto-1.7.31-linux-${ARCH}.tar.gz" -O /tmp/quarto.tar.gz && \
+    mkdir -p /opt/quarto && tar xzf /tmp/quarto.tar.gz -C /opt/quarto --strip-components=1 && \
+    rm /tmp/quarto.tar.gz && ln -s /opt/quarto/bin/quarto /usr/local/bin/quarto
 
 RUN ARCH="$(dpkg --print-architecture)" && \
     echo "Detected architecture: $ARCH" && \

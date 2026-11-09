@@ -1,6 +1,11 @@
 version: 7
 platforms:
 - name: linux-64
+  virtual-packages:
+  - __unix=0
+  - __linux=4.18
+  - __glibc=2.28
+  - __archspec=0=x86_64
 environments:
   default:
     channels:
@@ -38,6 +43,7 @@ environments:
       - conda: https://conda.anaconda.org/bioconda/noarch/bioconductor-biocbaseutils-1.12.0-r45hdfd78af_0.conda
       - conda: https://conda.anaconda.org/bioconda/noarch/bioconductor-biocfilecache-3.0.0-r45hdfd78af_0.conda
       - conda: https://conda.anaconda.org/bioconda/noarch/bioconductor-biocgenerics-0.56.0-r45hdfd78af_2.conda
+      - conda: https://conda.anaconda.org/bioconda/noarch/bioconductor-biocstyle-2.38.0-r45hdfd78af_0.conda
       - conda: https://conda.anaconda.org/bioconda/noarch/bioconductor-biocversion-3.22.0-r45hdfd78af_0.conda
       - conda: https://conda.anaconda.org/bioconda/noarch/bioconductor-bumpymatrix-1.18.0-r45hdfd78af_0.conda
       - conda: https://conda.anaconda.org/bioconda/noarch/bioconductor-data-packages-20260207-hdfd78af_0.conda
@@ -373,6 +379,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-bh-1.90.0_1-r45hc72bb7e_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-biocmanager-1.30.27-r45hc72bb7e_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-blob-1.3.0-r45hc72bb7e_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/r-bookdown-0.47-r45hc72bb7e_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-boot-1.3_32-r45hc72bb7e_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-bslib-0.11.0-r45hc72bb7e_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/r-coda-0.19_4.1-r45hc72bb7e_2.conda
@@ -1080,6 +1087,22 @@ packages:
   license: Artistic-2.0
   size: 653523
   timestamp: 1770415244399
+- conda: https://conda.anaconda.org/bioconda/noarch/bioconductor-biocstyle-2.38.0-r45hdfd78af_0.conda
+  sha256: 13d0b36c686e24f9ac4a47c957324f5892f47de726d1256a6f5cd9174f7bdd14
+  md5: 897dba8d4280e5391355c9442096d910
+  depends:
+  - r-base >=4.5,<4.6.0a0
+  - r-biocmanager
+  - r-bookdown
+  - r-knitr >=1.30
+  - r-rmarkdown >=1.2
+  - r-yaml
+  license: Artistic-2.0
+  run_exports:
+    weak:
+    - bioconductor-biocstyle >=2.38.0,<2.39.0a0
+  size: 885741
+  timestamp: 1770489887883
 - conda: https://conda.anaconda.org/bioconda/noarch/bioconductor-biocversion-3.22.0-r45hdfd78af_0.conda
   sha256: dbce5372470294a209052129321ed3b42915aaa3b3640f75ba4ce8dda429dafb
   md5: 22fbb19ad26c301e71066c47647da269
@@ -5641,6 +5664,23 @@ packages:
   license_family: GPL3
   size: 70126
   timestamp: 1768440582521
+- conda: https://conda.anaconda.org/conda-forge/noarch/r-bookdown-0.47-r45hc72bb7e_0.conda
+  sha256: 575c2ca9be8780a8fb1c340ed27703a07ca34d42697afbfb3d3e6c777afcff79
+  md5: ab1fa937b4d29c56293647b319ecfff4
+  depends:
+  - r-base >=4.5,<4.6.0a0
+  - r-htmltools >=0.3.6
+  - r-jquerylib
+  - r-knitr >=1.38
+  - r-rmarkdown >=2.14
+  - r-tinytex >=0.12
+  - r-xfun >=0.48
+  - r-yaml >=2.1.19
+  license: GPL-3.0-only
+  license_family: GPL3
+  run_exports: {}
+  size: 1044097
+  timestamp: 1781686417842
 - conda: https://conda.anaconda.org/conda-forge/noarch/r-boot-1.3_32-r45hc72bb7e_1.conda
   sha256: e2a347c8816f86515c479f9944515623bf120fedc09452246f105c568ae47381
   md5: 0a84930dd565d816d9fdb2473d6d3c8a

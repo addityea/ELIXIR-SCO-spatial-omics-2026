@@ -2,6 +2,21 @@
 
 Below is a list of changes that have been made to this branch after the course:
 
+## 2026-11-09
+
+### Fixed
+
+- Jupyter kernels no longer hang at startup in amd64 containers on Apple Silicon: both
+  Dockerfiles now build the SIGTRAP-mask workaround (`docker/nosigtrap.c`) and set it as
+  `LD_PRELOAD`. This is a no-op on native amd64/arm64 hosts.
+- The kernelspec is additionally registered as `elixir_sp` and `elixir`, matching the kernel
+  names that the notebooks were saved with (case-sensitive match was failing before).
+- The rstudio image now ships the quarto CLI, which the practical 7 vignettes need to render.
+- Practical 7 environment gained `bioconductor-biocstyle`, used inline by both vignettes.
+- Practical 8 `p8_niche_domain.ipynb` plotting cells derive the three highlighted clusters from
+  the computed `shape_component` keys instead of the hard-coded ids 9, 10 and 15, which the
+  pinned environment does not reproduce (`KeyError: '15'`).
+
 ## 2026-11-06
 
 ### Added

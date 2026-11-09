@@ -8,13 +8,19 @@ WORKDIR /app
 # The whole update+install is retried together, since Ubuntu mirrors can serve an index that's
 # briefly ahead of their package pool (update succeeds, then install 404s on a .deb)
 RUN n=0; \
-    until apt-get update && apt-get install -y git curl; do \
+    until apt-get update && apt-get install -y git curl gcc libc6-dev; do \
         n=$((n + 1)); \
         if [ "$n" -ge 5 ]; then exit 1; fi; \
         echo "apt-get attempt $n failed, retrying in 10s..."; \
         sleep 10; \
     done && \
     rm -rf /var/lib/apt/lists/*
+
+# Rosetta 2 workaround for amd64 images on Apple Silicon: pyzmq threads mask SIGTRAP,
+# which deadlocks fork() in Rosetta and makes Jupyter kernels hang at startup forever.
+# This LD_PRELOAD shim refuses SIGTRAP masking; it is a no-op on native amd64/arm64.
+COPY docker/nosigtrap.c /app/nosigtrap.c
+RUN gcc -shared -fPIC -O2 -o /libnosigtrap.so /app/nosigtrap.c
 
 COPY ${PIXI_ENV_PATH}/pixi.toml /app/
 COPY ${PIXI_ENV_PATH}/pixi.lock /app/
@@ -74,6 +80,8 @@ RUN userdel -r ubuntu 2>/dev/null || true && \
 # Copy pixi-installed environment + activation hook
 COPY --from=build /app /app
 COPY --from=build /shell-hook.sh /shell-hook.sh
+COPY --from=build /libnosigtrap.so /opt/libnosigtrap.so
+ENV LD_PRELOAD=/opt/libnosigtrap.so
 ENV PATH="/app/.pixi/envs/default/bin:${PATH}"
 
 # Start script in WORKDIR (Serve requirement)
@@ -111,7 +119,9 @@ RUN mkdir -p /root/.pixi/bin && chmod -R 755 /root && chown -R ${NB_UID}:${NB_GI
 
 # Switch to non-root user
 USER ${NB_UID}:${NB_GID}
-RUN /shell-hook.sh python -m ipykernel install --sys-prefix --name=ELIXIR_SP --display-name "ELIXIR Spatial Omics Kernel"
+RUN /shell-hook.sh python -m ipykernel install --sys-prefix --name=ELIXIR_SP --display-name "ELIXIR Spatial Omics Kernel" && \
+    /shell-hook.sh python -m ipykernel install --sys-prefix --name=elixir_sp --display-name "ELIXIR Spatial Omics Kernel" && \
+    /shell-hook.sh python -m ipykernel install --sys-prefix --name=elixir --display-name "ELIXIR Spatial Omics Kernel"
 WORKDIR /app
 
 EXPOSE 8888
