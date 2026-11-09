@@ -92,10 +92,10 @@ ENV LD_PRELOAD=/opt/libnosigtrap.so
 ENV PATH="/app/.pixi/envs/default/bin:${PATH}"
 
 # quarto CLI: the vignettes are .qmd documents, but the RStudio daily builds do not bundle quarto.
-RUN ARCH="$(dpkg --print-architecture)" && \
-    wget -q "https://github.com/quarto-dev/quarto-cli/releases/download/v1.7.31/quarto-1.7.31-linux-${ARCH}.tar.gz" -O /tmp/quarto.tar.gz && \
-    mkdir -p /opt/quarto && tar xzf /tmp/quarto.tar.gz -C /opt/quarto --strip-components=1 && \
-    rm /tmp/quarto.tar.gz && ln -s /opt/quarto/bin/quarto /usr/local/bin/quarto
+# ADD downloads and extracts the archive natively in BuildKit; extracting with tar inside RUN
+# breaks under QEMU emulation ("Cannot open: Function not implemented").
+ADD "https://github.com/quarto-dev/quarto-cli/releases/download/v1.7.31/quarto-1.7.31-linux-${TARGETARCH}.tar.gz" /opt/
+RUN ln -s /opt/quarto-1.7.31-linux-${TARGETARCH}/bin/quarto /usr/local/bin/quarto
 
 RUN ARCH="$(dpkg --print-architecture)" && \
     echo "Detected architecture: $ARCH" && \
