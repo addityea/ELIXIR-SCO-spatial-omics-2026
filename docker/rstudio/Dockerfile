@@ -43,7 +43,7 @@ RUN pixi shell-hook -s bash > /shell-hook.sh && \
 FROM --platform=$BUILDPLATFORM busybox:1.36 AS quarto
 ARG TARGETARCH
 ADD "https://github.com/quarto-dev/quarto-cli/releases/download/v1.7.31/quarto-1.7.31-linux-${TARGETARCH}.tar.gz" /tmp/quarto.tar.gz
-RUN tar xzf /tmp/quarto.tar.gz -C /opt --strip-components=1
+RUN mkdir -p /opt/quarto && tar xzf /tmp/quarto.tar.gz -C /opt/quarto --strip-components=1
 
 FROM ubuntu:latest AS production
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
